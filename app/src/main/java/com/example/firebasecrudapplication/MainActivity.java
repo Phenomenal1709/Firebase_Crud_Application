@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
+//DUPLICATE
 public class MainActivity extends AppCompatActivity implements CourseRVAdapter.CourseClickInterface{
 
     private RecyclerView courseRV;
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
         courseRV=findViewById(R.id.idRVCourses);
         loadingPB=findViewById(R.id.idPBLoading);
         addFAB=findViewById(R.id.idAddFab);
+
         bottomSheetRL=findViewById(R.id.idRLBSheet);
         mAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
         TextView courseSuitedForTV=layout.findViewById(R.id.idTVSuitedFor);
         TextView coursePriceTV=layout.findViewById(R.id.idTVPrice);
         Button editBtn = layout.findViewById(R.id.idBtnEdit);
+        Button notesBtn = layout.findViewById(R.id.idBtnNotes);
         Button viewDetailsBtn = layout.findViewById(R.id.idBtnViewDetails);
         ImageView courseIV = layout.findViewById(R.id.idIVCourse);
 
@@ -145,6 +147,17 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
                 Intent i = new Intent(MainActivity.this,EditCourseActivity.class);
                 i.putExtra("course",courseRVModal);
                 startActivity(i);
+
+            }
+        });
+
+        notesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               // Uri uri = Uri.parse("http://www.google.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(courseSuitedForTV.getText().toString()));
+                startActivity(intent);
 
             }
         });
@@ -180,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
                 startActivity(i);
                 this.finish();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

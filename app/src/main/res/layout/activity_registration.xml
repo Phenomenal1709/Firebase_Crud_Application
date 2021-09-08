@@ -7,6 +7,12 @@
     android:background="@color/blue_shade_1"
     tools:context=".RegistrationActivity">
 
+    <ImageView
+        android:layout_width="169dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/welcome" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
