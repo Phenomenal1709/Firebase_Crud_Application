@@ -14,7 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="140dp"
-        android:hint="Enter User Name"
+        android:hint="Enter Your Email"
         style="@style/TextInputLayout"
         android:padding="5dp"
         android:textColorHint="@color/white"
@@ -95,20 +95,6 @@
         android:indeterminateDrawable="@drawable/progress_back"
         android:visibility="gone"/>
 
-    <ImageView
-        android:layout_width="218dp"
-        android:layout_height="196dp"
-        android:layout_below="@id/idTVRegister"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="193dp"
-        android:layout_marginRight="193dp"
-        android:src="@drawable/hello" />
 
 
 </RelativeLayout>

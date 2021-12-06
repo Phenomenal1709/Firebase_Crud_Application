@@ -60,12 +60,21 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(userName,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull  Task<AuthResult> task) {
+                            loadingPB.setVisibility(View.GONE);
                             if(task.isSuccessful()){
-                                loadingPB.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "Login Successful:)", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(LoginActivity.this,MainActivity.class);
-                                startActivity(i);
-                                finish();
+                                if(mAuth.getCurrentUser().isEmailVerified()){
+
+                                    Toast.makeText(LoginActivity.this, "Login Successful:)", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "Please verify your email address", Toast.LENGTH_SHORT).show();
+
+                                }
+
+
                             }else{
                                 loadingPB.setVisibility(View.GONE);
                                 Toast.makeText(LoginActivity.this, "Failed to Login:(", Toast.LENGTH_SHORT).show();

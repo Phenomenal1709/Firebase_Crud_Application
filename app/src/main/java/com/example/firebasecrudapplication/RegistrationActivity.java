@@ -65,10 +65,24 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 loadingPB.setVisibility(View.GONE);
-                                Toast.makeText(RegistrationActivity.this, "User Registered:)", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(RegistrationActivity.this,LoginActivity.class);
-                                startActivity(i);
-                                finish();
+                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull  Task<Void> task) {
+
+                                        if(task.isSuccessful()) {
+
+                                            Toast.makeText(RegistrationActivity.this, "User Registered Successfully.Please check your email for verification", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+                                });
+
                             }else{
                                 loadingPB.setVisibility(View.GONE);
                                 Toast.makeText(RegistrationActivity.this, "Failed to Register User", Toast.LENGTH_SHORT).show();

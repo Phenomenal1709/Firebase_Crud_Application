@@ -7,11 +7,6 @@
     android:background="@color/blue_shade_1"
     tools:context=".RegistrationActivity">
 
-    <ImageView
-        android:layout_width="169dp"
-        android:layout_height="130dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/welcome" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -20,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="140dp"
-        android:hint="Enter User Name"
+        android:hint="Enter Your Email"
         style="@style/TextInputLayout"
         android:padding="5dp"
         android:textColorHint="@color/white"
@@ -109,6 +104,7 @@
         android:text="Already a User?Login Here"
         android:textColor="@color/white"
         android:textAllCaps="false"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center"
         android:layout_below="@id/idBtnRegister"

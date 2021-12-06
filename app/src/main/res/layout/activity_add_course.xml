@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Enter Course Price"
+                android:hint="Price"
                 style="@style/TextInputLayout"
                 android:padding="5dp"
                 android:layout_marginTop="10dp"
@@ -57,7 +57,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/idEdtCoursePrice"
                     android:importantForAutofill="no"
-                    android:inputType="number"
+                    android:inputType="number|text"
+                    android:fontFamily="monospace"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="14sp"/>

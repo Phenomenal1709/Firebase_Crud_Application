@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -53,10 +55,18 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
         loadingPB=findViewById(R.id.idPBLoading);
         addFAB=findViewById(R.id.idAddFab);
 
+
         bottomSheetRL=findViewById(R.id.idRLBSheet);
         mAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference("Courses");
+
+       Query query= databaseReference.orderByKey();
+
+        FirebaseRecyclerOptions<CourseRVAdapter> options=
+                new FirebaseRecyclerOptions.Builder<CourseRVAdapter>()
+                .setQuery(query,CourseRVAdapter.class).build();
+
         courseRVModalArrayList = new ArrayList<>();
         courseRVAdapter=new CourseRVAdapter(courseRVModalArrayList,this,this);
         courseRV.setLayoutManager(new LinearLayoutManager(this));
@@ -137,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
         courseNameTV.setText(courseRVModal.getCourseName());
         courseDescTV.setText(courseRVModal.getCourseDescription());
         courseSuitedForTV.setText(courseRVModal.getBestSuitedFor());
-        coursePriceTV.setText("Rs. "+courseRVModal.getCoursePrice());
+        coursePriceTV.setText(courseRVModal.getCoursePrice());
         Picasso.get().load(courseRVModal.getCourseImg()).into(courseIV);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
             @Override
             public void onClick(View view) {
 
-               // Uri uri = Uri.parse("http://www.google.com");
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(courseSuitedForTV.getText().toString()));
                 startActivity(intent);
 
@@ -169,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(courseRVModal.getCourseLink()));
                 startActivity(i);
-
             }
         });
 
@@ -192,6 +200,13 @@ public class MainActivity extends AppCompatActivity implements CourseRVAdapter.C
                 Intent i = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(i);
                 this.finish();
+                return true;
+
+            case R.id.idSupport:
+
+                Intent intent = new Intent(MainActivity.this,supportViaMail.class);
+                startActivity(intent);
+
                 return true;
 
             default:

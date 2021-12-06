@@ -40,7 +40,7 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
     public void onBindViewHolder(@NonNull CourseRVAdapter.ViewHolder holder, int position) {
         CourseRVModal courseRVModal=courseRVModalArrayList.get(position);
         holder.courseNameTV.setText(courseRVModal.getCourseName());
-        holder.coursePriceTV.setText("Rs. "+courseRVModal.getCoursePrice());
+        holder.coursePriceTV.setText(courseRVModal.getCoursePrice());
         Picasso.get().load(courseRVModal.getCourseImg()).into(holder.courseIV);
         setAnimation(holder.itemView,position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
